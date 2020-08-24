@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>SEFAZ</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="formUsuario">
+
+		<h:outputLabel value="Nome:" />
+		<br />
+		<h:inputText value="#{usuarioBean.usuario.nome}" />
+		<br />
+
+		<h:outputLabel value="E-mail:" />
+		<br />
+		<h:inputText value="#{usuarioBean.usuario.email}" />
+		<br />
+
+		<h:outputLabel value="Senha:" />
+		<br />
+		<h:inputSecret value="#{usuarioBean.usuario.senha}" />
+		<br />
+
+		<h:commandButton value="Novo" action="#{usuarioBean.limpar}" />
+		<h:commandButton value="Salvar" action="#{usuarioBean.salvar}" />
+		<h:commandButton value="Listar" action="#{usuarioBean.listar}" />
+
+		<h:dataTable value="#{usuarioBen.usuarios}" var="u">
+			<h:column>
+				<h:outputText value="#{u.id}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{u.nome}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{u.email}" />
+			</h:column>
+			<h:column>
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{u}"
+						target="#{usuarioBean.usuario}" />
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<h:commandLink value="Deletar" action="#{usuarioBean.deletar}">
+					<f:setPropertyActionListener value="#{u}"
+						target="#{usuarioBean.usuario}" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+
+</html>
